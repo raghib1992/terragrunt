@@ -1,1 +1,4 @@
 # terragrunt
+
+
+terragrunt init
