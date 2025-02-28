@@ -1,3 +1,14 @@
+generate "backend" {
+    path      = "s3-backend.tf"
+    if_exists = "overwrite_terragrunt"
+    contents  = <<EOF
 terraform {
-    source = "git::git@github.com:raghib1992/terraform-tuts.git//terrgrunt/example?ref=v1.0.2"
+    backend "s3" {
+        bucket = "terragrunt-backend-statefile"
+        region  = "eu-north-1"
+        key     = "${path_relative_to_include()}/terraform.tfstate"
+        encrypt = true
+    }
+}
+EOF
 }
